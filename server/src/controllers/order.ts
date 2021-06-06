@@ -6,8 +6,8 @@ export const getAll = async (req: Request, res: Response) => {
     try {
         const { offset, limit, start, end, order } = req.query
 
-        const query: { date?: Object, user: string | undefined, order?: number } = {
-            user: req.user?._id
+        const query: { date?: Object, order?: number } = {
+            
         }
 
         if (start) query.date = { $gte: start }
@@ -32,12 +32,11 @@ export const getAll = async (req: Request, res: Response) => {
 export const create = async (req: Request, res: Response) => {
     try {
         const { list } = req.body
-        const userId = req.user?._id
-        const lastOrder = await Order.findOne({ user: userId }).sort({ date: -1 })
+        const lastOrder = await Order.findOne().sort({ date: -1 })
 
         const maxOrder = lastOrder ? lastOrder.order : 0
 
-        const order = new Order({ list, user: userId, order: maxOrder + 1 })
+        const order = new Order({ list, order: maxOrder + 1 })
         await order.save()
 
         res.status(201).json(order)

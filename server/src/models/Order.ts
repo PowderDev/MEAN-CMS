@@ -35,12 +35,7 @@ const orderSchema = new Schema<IOrder>({
                 required: true
             }
         }
-    ],
-    user: {
-        ref: 'users',
-        type: Schema.Types.ObjectId,
-        required: true
-    }
+    ]
 })
 
 const Order = model<IOrder>('orders', orderSchema)

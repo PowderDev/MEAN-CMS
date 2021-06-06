@@ -44,15 +44,12 @@ var Order_1 = __importDefault(require("../models/Order"));
 var ErrorHandler_1 = __importDefault(require("../utils/ErrorHandler"));
 var getAll = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, offset, limit, start, end, order, query, orders, err_1;
-    var _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                _c.trys.push([0, 2, , 3]);
+                _b.trys.push([0, 2, , 3]);
                 _a = req.query, offset = _a.offset, limit = _a.limit, start = _a.start, end = _a.end, order = _a.order;
-                query = {
-                    user: (_b = req.user) === null || _b === void 0 ? void 0 : _b._id
-                };
+                query = {};
                 if (start)
                     query.date = { $gte: start };
                 if (end) {
@@ -67,11 +64,11 @@ var getAll = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                         .skip(Number(offset))
                         .limit(Number(limit))];
             case 1:
-                orders = _c.sent();
+                orders = _b.sent();
                 res.status(200).json(orders);
                 return [3 /*break*/, 3];
             case 2:
-                err_1 = _c.sent();
+                err_1 = _b.sent();
                 ErrorHandler_1.default(err_1, res);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -80,26 +77,24 @@ var getAll = function (req, res) { return __awaiter(void 0, void 0, void 0, func
 }); };
 exports.getAll = getAll;
 var create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var list, userId, lastOrder, maxOrder, order, err_2;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var list, lastOrder, maxOrder, order, err_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 3, , 4]);
+                _a.trys.push([0, 3, , 4]);
                 list = req.body.list;
-                userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a._id;
-                return [4 /*yield*/, Order_1.default.findOne({ user: userId }).sort({ date: -1 })];
+                return [4 /*yield*/, Order_1.default.findOne().sort({ date: -1 })];
             case 1:
-                lastOrder = _b.sent();
+                lastOrder = _a.sent();
                 maxOrder = lastOrder ? lastOrder.order : 0;
-                order = new Order_1.default({ list: list, user: userId, order: maxOrder + 1 });
+                order = new Order_1.default({ list: list, order: maxOrder + 1 });
                 return [4 /*yield*/, order.save()];
             case 2:
-                _b.sent();
+                _a.sent();
                 res.status(201).json(order);
                 return [3 /*break*/, 4];
             case 3:
-                err_2 = _b.sent();
+                err_2 = _a.sent();
                 ErrorHandler_1.default(err_2, res);
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];

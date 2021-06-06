@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon dist/index.js",
     "start": "node build/index.js"
   },
   "keywords": [],
@@ -27,6 +26,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
+    "fullmaster": "file:..",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongoose": "^5.12.6",

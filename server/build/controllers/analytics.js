@@ -44,16 +44,14 @@ var moment_1 = __importDefault(require("moment"));
 var Order_1 = __importDefault(require("../models/Order"));
 var ErrorHandler_1 = __importDefault(require("../utils/ErrorHandler"));
 var overview = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userId, allOrders, ordersMap, yesterday, yesterdayOrders, yesterdayOrdersNumber, totalOrdersNumber, daysNumber, ordersPerDay, ordersPercent, totalRevenue, revenuePerDay, yesterdayRevenue, revenuePercent, comparedRevenue, comparedNumber, err_1;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var allOrders, ordersMap, yesterday, yesterdayOrders, yesterdayOrdersNumber, totalOrdersNumber, daysNumber, ordersPerDay, ordersPercent, totalRevenue, revenuePerDay, yesterdayRevenue, revenuePercent, comparedRevenue, comparedNumber, err_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
-                userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a._id;
-                return [4 /*yield*/, Order_1.default.find({ user: userId }).sort({ date: 1 })];
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, Order_1.default.find().sort({ date: 1 })];
             case 1:
-                allOrders = _b.sent();
+                allOrders = _a.sent();
                 ordersMap = getOrdersMap(allOrders);
                 yesterday = moment_1.default().add(-1, 'd').format('DD.MM.YYYY');
                 yesterdayOrders = ordersMap[yesterday] || [];
@@ -84,7 +82,7 @@ var overview = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
                 });
                 return [3 /*break*/, 3];
             case 2:
-                err_1 = _b.sent();
+                err_1 = _a.sent();
                 ErrorHandler_1.default(err_1, res);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -93,16 +91,14 @@ var overview = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
 }); };
 exports.overview = overview;
 var analytics = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userId, allOrders, ordersMap_1, days, averageSum, chart, err_2;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var allOrders, ordersMap_1, days, averageSum, chart, err_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
-                userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a._id;
-                return [4 /*yield*/, Order_1.default.find({ user: userId }).sort({ date: 1 })];
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, Order_1.default.find().sort({ date: 1 })];
             case 1:
-                allOrders = _b.sent();
+                allOrders = _a.sent();
                 ordersMap_1 = getOrdersMap(allOrders);
                 days = Object.keys(ordersMap_1).length;
                 averageSum = Math.round(calcMoney(allOrders) / days);
@@ -115,7 +111,7 @@ var analytics = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 res.status(200).json({ averageSum: averageSum, chart: chart });
                 return [3 /*break*/, 3];
             case 2:
-                err_2 = _b.sent();
+                err_2 = _a.sent();
                 ErrorHandler_1.default(err_2, res);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];

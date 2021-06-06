@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MaterialService } from '../shared/classes/material.service';
-import { User } from '../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -33,7 +32,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       .subscribe(params => {
         if (params.accessDenied) {
           this.material.toast('First you need to login')
-        } else if (params.sessionExpired) {
+        } else if (params.sessionExpired && localStorage.get('auth-token')) {
           this.material.toast('Please, login again')
         }
       })

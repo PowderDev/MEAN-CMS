@@ -1,2 +1,13 @@
 @import "~materialize-css/dist/css/materialize.min.css";
 @import "./theme/styles/styles.min.css";
+
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.auth-block {
+   padding: 150px;
+}

@@ -43,21 +43,19 @@ exports.update = exports.remove = exports.create = exports.getByCategoryId = voi
 var Position_1 = __importDefault(require("../models/Position"));
 var ErrorHandler_1 = __importDefault(require("../utils/ErrorHandler"));
 var getByCategoryId = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var categoryId, userId, positions, err_1;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var categoryId, positions, err_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
+                _a.trys.push([0, 2, , 3]);
                 categoryId = req.params.categoryId;
-                userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a._id;
                 return [4 /*yield*/, Position_1.default.find({ category: categoryId })];
             case 1:
-                positions = _b.sent();
+                positions = _a.sent();
                 res.status(200).json(positions);
                 return [3 /*break*/, 3];
             case 2:
-                err_1 = _b.sent();
+                err_1 = _a.sent();
                 ErrorHandler_1.default(err_1, res);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -66,24 +64,22 @@ var getByCategoryId = function (req, res) { return __awaiter(void 0, void 0, voi
 }); };
 exports.getByCategoryId = getByCategoryId;
 var create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name_1, cost, category, userId, position, err_2;
-    var _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
+    var _a, name_1, cost, category, position, err_2;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                _c.trys.push([0, 2, , 3]);
+                _b.trys.push([0, 2, , 3]);
                 _a = req.body, name_1 = _a.name, cost = _a.cost, category = _a.category;
-                userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b._id;
                 position = new Position_1.default({
                     name: name_1, cost: cost, category: category
                 });
                 return [4 /*yield*/, position.save()];
             case 1:
-                _c.sent();
+                _b.sent();
                 res.status(201).json(position);
                 return [3 /*break*/, 3];
             case 2:
-                err_2 = _c.sent();
+                err_2 = _b.sent();
                 ErrorHandler_1.default(err_2, res);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];

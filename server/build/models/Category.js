@@ -10,11 +10,6 @@ var categorySchema = new mongoose_1.Schema({
     imageSrc: {
         type: String,
         default: 'https://avatanplus.ru/files/resources/mid/577e401d99b8d155c52a73be.png'
-    },
-    user: {
-        ref: 'users',
-        type: mongoose_1.Schema.Types.ObjectId,
-        required: true
     }
 });
 var Category = mongoose_1.model('categories', categorySchema);

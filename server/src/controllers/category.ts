@@ -5,8 +5,7 @@ import errorHandler from '../utils/ErrorHandler'
 
 export const getAll = async (req: Request, res: Response) => {
     try {
-        const userId = req.user?._id
-        const categories = await Category.find({ user: userId })
+        const categories = await Category.find()
 
         res.status(200).json(categories)
     }
@@ -42,11 +41,10 @@ export const remove = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
     try {
-        const userId = req.user?._id
         const { name } = req.body
         const file = req.file ? req.file.path : ''
 
-        const category = new Category({ name, user: userId, imageSrc: file })
+        const category = new Category({ name, imageSrc: file })
         await category.save()
 
         res.status(200).json(category)

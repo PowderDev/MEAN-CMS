@@ -7,8 +7,7 @@ import errorHandler from "../utils/ErrorHandler"
 
 export const overview = async (req: Request, res: Response) => {
     try {
-        const userId = req.user?._id
-        const allOrders = await Order.find({ user: userId }).sort({ date: 1 })
+        const allOrders = await Order.find().sort({ date: 1 })
         const ordersMap = getOrdersMap(allOrders)
         const yesterday = moment().add(-1, 'd').format('DD.MM.YYYY')
         const yesterdayOrders = ordersMap[yesterday] || []
@@ -59,8 +58,7 @@ export const overview = async (req: Request, res: Response) => {
 
 export const analytics = async (req: Request, res: Response) => {
     try {
-        const userId = req.user?._id
-        const allOrders = await Order.find({ user: userId }).sort({ date: 1 })
+        const allOrders = await Order.find().sort({ date: 1 })
         const ordersMap = getOrdersMap(allOrders)
 
         const days = Object.keys(ordersMap).length

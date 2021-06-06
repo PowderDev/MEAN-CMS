@@ -25,12 +25,7 @@ var orderSchema = new mongoose_1.Schema({
                 required: true
             }
         }
-    ],
-    user: {
-        ref: 'users',
-        type: mongoose_1.Schema.Types.ObjectId,
-        required: true
-    }
+    ]
 });
 var Order = mongoose_1.model('orders', orderSchema);
 exports.default = Order;

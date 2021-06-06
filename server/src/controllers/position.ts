@@ -5,7 +5,6 @@ import errorHandler from '../utils/ErrorHandler'
 export const getByCategoryId = async (req: Request, res: Response) => {
     try {
         const { categoryId } = req.params
-        const userId = req.user?._id
 
         const positions = await Position.find({ category: categoryId })
 
@@ -19,7 +18,6 @@ export const getByCategoryId = async (req: Request, res: Response) => {
 export const create = async (req: Request, res: Response) => {
     try {
         const { name, cost, category } = req.body
-        const userId = req.user?._id
 
         const position = new Position({
             name, cost, category

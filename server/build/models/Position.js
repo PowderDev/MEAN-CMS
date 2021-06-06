@@ -14,11 +14,6 @@ var positionSchema = new mongoose_1.Schema({
         ref: 'categories',
         type: mongoose_1.Schema.Types.ObjectId,
         required: true
-    },
-    user: {
-        ref: 'users',
-        type: mongoose_1.Schema.Types.ObjectId,
-        // required: true
     }
 });
 var Position = mongoose_1.model('positions', positionSchema);

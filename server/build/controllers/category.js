@@ -55,20 +55,18 @@ var Category_1 = __importDefault(require("../models/Category"));
 var Position_1 = __importDefault(require("../models/Position"));
 var ErrorHandler_1 = __importDefault(require("../utils/ErrorHandler"));
 var getAll = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userId, categories, err_1;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var categories, err_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
-                userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a._id;
-                return [4 /*yield*/, Category_1.default.find({ user: userId })];
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, Category_1.default.find()];
             case 1:
-                categories = _b.sent();
+                categories = _a.sent();
                 res.status(200).json(categories);
                 return [3 /*break*/, 3];
             case 2:
-                err_1 = _b.sent();
+                err_1 = _a.sent();
                 ErrorHandler_1.default(err_1, res);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -122,23 +120,21 @@ var remove = function (req, res) { return __awaiter(void 0, void 0, void 0, func
 }); };
 exports.remove = remove;
 var create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userId, name_1, file, category, err_4;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var name_1, file, category, err_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
-                userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a._id;
+                _a.trys.push([0, 2, , 3]);
                 name_1 = req.body.name;
                 file = req.file ? req.file.path : '';
-                category = new Category_1.default({ name: name_1, user: userId, imageSrc: file });
+                category = new Category_1.default({ name: name_1, imageSrc: file });
                 return [4 /*yield*/, category.save()];
             case 1:
-                _b.sent();
+                _a.sent();
                 res.status(200).json(category);
                 return [3 /*break*/, 3];
             case 2:
-                err_4 = _b.sent();
+                err_4 = _a.sent();
                 ErrorHandler_1.default(err_4, res);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
